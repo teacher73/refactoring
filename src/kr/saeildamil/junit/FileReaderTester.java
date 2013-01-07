@@ -23,7 +23,7 @@ public class FileReaderTester extends TestCase {
 			_input = new FileReader("data.txt");
 			_empty = newEmptyFile();
 		}catch (FileNotFoundException e){
-			throw new RuntimeException("Å×½ºÆ® ÆÄÀÏÀ» ¿­ ¼ö ¾øÀ½");
+			throw new RuntimeException("í…ŒìŠ¤íŠ¸ íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ìŒ");
 		}
 	}
 
@@ -39,7 +39,7 @@ public class FileReaderTester extends TestCase {
 		try{
 			_input.close();
 		}catch(IOException e){
-			throw new RuntimeException("Å×½ºÆ® ÆÄÀÏ ´İ´Â Áß ¿¡·¯ ¹ß»ı");
+			throw new RuntimeException("í…ŒìŠ¤íŠ¸ íŒŒì¼ ë‹«ëŠ” ì¤‘ ì—ëŸ¬ ë°œìƒ");
 		}
 		super.tearDown();
 	}
@@ -79,7 +79,7 @@ public class FileReaderTester extends TestCase {
 		_input.close();
 		try{
 			_input.read();
-			fail("read past end¿¡ ¿¹¿Ü°¡ ¹ß»ıÇÏÁö ¾ÊÀ½");
+			fail("read past endï¿½ï¿½ ï¿½ï¿½ï¿½Ü°ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}catch(IOException e){
 			
 		}

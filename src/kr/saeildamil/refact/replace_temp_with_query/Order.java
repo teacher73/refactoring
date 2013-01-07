@@ -1,9 +1,9 @@
 package kr.saeildamil.refact.replace_temp_with_query;
 
 public class Order {
-	private double amount;	//�ܻ��
-	private String orderDate;	//�ܻ�¥
-	private String orderName;	//�ܻ� ǰ��
+	private double amount;	//외상액
+	private String orderDate;	//외상날짜
+	private String orderName;	//외상 품목
 	private int orderNum;
 	
 	public Order() { }	
