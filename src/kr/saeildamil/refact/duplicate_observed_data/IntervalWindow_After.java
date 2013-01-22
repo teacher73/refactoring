@@ -21,13 +21,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class IntervalWindow_After extends JFrame implements Observer{
+public class IntervalWindow_After extends JFrame implements Observer {
 	private Interval _subject;
-	
+
 	private JPanel contentPane;
 	private JTextField _startField;
 	private JTextField _endField;
 	private JTextField _lengthField;
+
+	private JDialog dlg;
+	private boolean isShowDlg;
 
 	/**
 	 * Launch the application.
@@ -54,22 +57,20 @@ public class IntervalWindow_After extends JFrame implements Observer{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("5dlu"),
-				FormFactory.DEFAULT_COLSPEC,
-				ColumnSpec.decode("5dlu"),
-				ColumnSpec.decode("default:grow"),},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+		contentPane.setLayout(new FormLayout(
+				new ColumnSpec[] { ColumnSpec.decode("5dlu"),
+						FormFactory.DEFAULT_COLSPEC, ColumnSpec.decode("5dlu"),
+						ColumnSpec.decode("default:grow"), }, new RowSpec[] {
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC, }));
 
 		JLabel lblStart = new JLabel("Start");
 		contentPane.add(lblStart, "2, 2");
@@ -94,11 +95,12 @@ public class IntervalWindow_After extends JFrame implements Observer{
 		_lengthField.addFocusListener(listener);
 		contentPane.add(_lengthField, "4, 6, fill, default");
 		_lengthField.setColumns(10);
-		
+
 		btnOpenIntervalProperties = new JButton("Open Interval Properties");
-		btnOpenIntervalProperties.addActionListener(new BtnOpenIntervalPropertiesActionListener());
+		btnOpenIntervalProperties
+				.addActionListener(new BtnOpenIntervalPropertiesActionListener());
 		contentPane.add(btnOpenIntervalProperties, "4, 10");
-		
+
 		_subject = new Interval();
 		_subject.addObserver(this);
 		update(_subject, null);
@@ -127,7 +129,6 @@ public class IntervalWindow_After extends JFrame implements Observer{
 		}
 	};
 	private JButton btnOpenIntervalProperties;
-	
 
 	public void StartField_FocusLost(FocusEvent e) {
 		setStart(_startField.getText());
@@ -147,9 +148,8 @@ public class IntervalWindow_After extends JFrame implements Observer{
 		setEnd(_endField.getText());
 		if (isNotInteger(getEnd()))
 			setEnd("0");
-		calculateLength(); 		
+		calculateLength();
 	}
-	
 
 	private boolean isNotInteger(String text) {
 		try {
@@ -166,47 +166,57 @@ public class IntervalWindow_After extends JFrame implements Observer{
 		_startField.setText(_subject.getStart());
 		_lengthField.setText(_subject.getLength());
 	}
-	
-	String getStart(){
+
+	String getStart() {
 		return _subject.getStart();
 	}
-	
-	String getEnd(){
+
+	String getEnd() {
 		return _subject.getEnd();
 	}
-	
-	String getLength(){
+
+	String getLength() {
 		return _subject.getLength();
 	}
-	
-	void setStart(String arg){
+
+	void setStart(String arg) {
 		_subject.setStart(arg);
 	}
-	
-	void setEnd(String arg){
+
+	void setEnd(String arg) {
 		_subject.setEnd(arg);
 	}
-	
-	void setLength(String arg){
+
+	void setLength(String arg) {
 		_subject.setLength(arg);
 	}
-	
+
 	void calculateEnd() {
 		_subject.calculateEnd();
 	}
+
 	void calculateLength() {
 		_subject.calculateLength();
 	}
-	private class BtnOpenIntervalPropertiesActionListener implements ActionListener {
+
+	private class BtnOpenIntervalPropertiesActionListener implements
+			ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			JDialog dlg = new JDialog();
-			IntervarPanel panel = new IntervarPanel();
-			panel.getStartfield().setText(getStart());
-			panel.getEndfield().setText(getEnd());
-			panel.getLengthfield().setText(getLength());
-			dlg.add(panel);
-			
-			dlg.setVisible(true);
+			if (isShowDlg){
+				dlg.setVisible(false);
+				isShowDlg = false;
+			} else {
+				dlg = new JDialog();
+				dlg.setSize(200, 120);
+				IntervarPanel panel = new IntervarPanel();
+				panel.getStartfield().setText(getStart());
+				panel.getEndfield().setText(getEnd());
+				panel.getLengthfield().setText(getLength());
+				dlg.add(panel);
+
+				dlg.setVisible(true);
+				isShowDlg = true;
+			}
 		}
 	}
 }
