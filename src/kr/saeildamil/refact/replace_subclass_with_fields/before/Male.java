@@ -8,7 +8,7 @@
  *
  */
 
-package kr.saeildamil.refact.replace_subclass_with_fields;
+package kr.saeildamil.refact.replace_subclass_with_fields.before;
 
 
 /**
@@ -21,7 +21,7 @@ package kr.saeildamil.refact.replace_subclass_with_fields;
 public class Male extends Person {
 
 	/**
-	 * @see kr.saeildamil.refact.replace_subclass_with_fields.Person#isMale()
+	 * @see kr.saeildamil.refact.replace_subclass_with_fields.before.Person#isMale()
 	 */
 	@Override
 	boolean isMale() {
@@ -30,7 +30,7 @@ public class Male extends Person {
 	}
 
 	/**
-	 * @see kr.saeildamil.refact.replace_subclass_with_fields.Person#getCode()
+	 * @see kr.saeildamil.refact.replace_subclass_with_fields.before.Person#getCode()
 	 */
 	@Override
 	char getCode() {

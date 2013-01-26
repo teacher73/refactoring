@@ -8,7 +8,7 @@
  *
  */
 
-package kr.saeildamil.refact.replace_subclass_with_fields;
+package kr.saeildamil.refact.replace_subclass_with_fields.before;
 
 /**
  * 
