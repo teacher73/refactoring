@@ -8,7 +8,7 @@
  *
  */
 
-package kr.saeildamil.refact.replace_subclass_with_fields;
+package kr.saeildamil.refact.replace_subclass_with_fields.after;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -29,14 +29,14 @@ public class ReplaceSubclassWithFieldsTester extends TestCase {
 	}
 	
 	public void testCaseOne(){
-		Male male = new Male();
-		Female female = new Female();
+		Person kent = Person.createMale();
+		Person taehee = Person.createFemale();
 		
-		Assert.assertEquals(true, male.isMale());
-		Assert.assertEquals(false, female.isMale());
+		Assert.assertEquals(true, kent.isMale());
+		Assert.assertEquals(false, taehee.isMale());
 		
-		Assert.assertEquals('M', male.getCode());
-		Assert.assertEquals('F', female.getCode());
+		Assert.assertEquals('M', kent.getCode());
+		assertEquals('F', taehee.getCode());
 	}
 	
 	public static void main(String[] args) {

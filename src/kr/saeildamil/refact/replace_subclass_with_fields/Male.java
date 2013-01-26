@@ -10,6 +10,7 @@
 
 package kr.saeildamil.refact.replace_subclass_with_fields;
 
+
 /**
  * 
  * @author	mskim
